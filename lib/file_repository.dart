@@ -7,7 +7,7 @@ class FileRepository {
   late Logger logger;
   String androidManifestPath =
       '.\\android\\app\\src\\main\\AndroidManifest.xml';
-  String iosInfoPlistPath = '.\\ios\\Runner\\Info.plist';
+  String iosInfoPlistPath = '.\\ios\\Runner\\Info-Release.plist';
   String androidAppBuildGradlePath = '.\\android\\app\\build.gradle';
   String iosProjectPbxprojPath = '.\\ios\\Runner.xcodeproj\\project.pbxproj';
   String macosAppInfoxprojPath = '.\\macos\\Runner\\Configs\\AppInfo.xcconfig';
@@ -21,7 +21,7 @@ class FileRepository {
     logger = Logger(filter: ProductionFilter());
     if (Platform.isMacOS || Platform.isLinux) {
       androidManifestPath = 'android/app/src/main/AndroidManifest.xml';
-      iosInfoPlistPath = 'ios/Runner/Info.plist';
+      iosInfoPlistPath = 'ios/Runner/Info-Release.plist';
       androidAppBuildGradlePath = 'android/app/build.gradle';
       iosProjectPbxprojPath = 'ios/Runner.xcodeproj/project.pbxproj';
       macosAppInfoxprojPath = 'macos/Runner/Configs/AppInfo.xcconfig';
@@ -349,7 +349,7 @@ class FileRepository {
       filePath: iosInfoPlistPath,
     ) as FutureOr<List<dynamic>>);
     for (var i = 0; i < contentLineByLine.length; i++) {
-      if (contentLineByLine[i].contains('<key>CFBundleName</key>')) {
+      if (contentLineByLine[i].contains('<key>CFBundleDisplayName</key>')) {
         return (contentLineByLine[i + 1] as String).trim().substring(5, 5);
       }
     }
