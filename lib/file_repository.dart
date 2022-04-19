@@ -228,7 +228,7 @@ class FileRepository {
       return null;
     }
     for (var i = 0; i < contentLineByLine!.length; i++) {
-      if (contentLineByLine[i].contains('<key>CFBundleName</key>')) {
+      if (contentLineByLine[i].contains('<key>CFBundleDisplayName</key>')) {
         contentLineByLine[i + 1] = '\t<string>$appName</string>\r';
         break;
       }
